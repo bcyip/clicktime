@@ -28,4 +28,4 @@
     npx cypress open
     ```
   2.  click on tv_show_spec.js
-    ![Cypress GUI](https://github.com/bcyip/clicktime/docs/cypress_run_test.png)
+    ![image](docs/cypress_run_test.png)
