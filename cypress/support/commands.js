@@ -27,3 +27,7 @@
 Cypress.Commands.add('keyboardClick', (character) => {
   cy.get('button').contains(character).click();
 })
+
+Cypress.Commands.add('restartGame', () => {
+  cy.get('button').contains('Restart Game').click();
+})
