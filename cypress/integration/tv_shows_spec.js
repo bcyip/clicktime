@@ -6,12 +6,12 @@ describe('TV Show Game', () => {
     cy.get('.text_button-primary__1bhgI').contains('Load Game').click();
   })
 
-  it('should TV Show game game with the proper name', () =>{
+  it('should TV Show game game with the proper name', () => {
     cy.get('p.text_header__1XvnO').should('have.text', 'Welcome to WordGame user1!');
     cy.get('p.text_standard__1U0DF').should('have.text', 'You\'ve currently chosen the TV Shows category.You have missed 0 guess(es), \n\t\t\t\t\t\t\t\t\tyou have 6 attempt(s) left.');
   })
 
-  it('Win Message Displayed', () =>{
+  it('Win Message Displayed', () => {
     cy.keyboardClick('F');
     cy.keyboardClick('R');
     cy.keyboardClick('I');
@@ -22,7 +22,7 @@ describe('TV Show Game', () => {
     cy.get('p.text_header__1XvnO').should('have.text', 'Welcome to WordGame user1!Congratulations you just won');
   })
 
-  xit('Lose game', () =>{
+  xit('Lose game', () => {
     cy.keyboardClick('Z');
     cy.keyboardClick('Y');
     cy.keyboardClick('X');
@@ -33,6 +33,13 @@ describe('TV Show Game', () => {
     // TODO:
     // verify all letters disabled
     // verify correct answer displayed
+  })
+
+  it('Restarts game', () => {
+    cy.restartGame();
+    cy.get('.input_input__SUO-5').should('have.value', 'user1');
+    cy.get('.select_select__2eNun').find('option:selected').should('have.text', 'Select a Category');
+    cy.get('button').contains('button', 'Load Game').should('be.disabled')
   })
 
   context('Attempt Calculations', () => {
@@ -55,19 +62,19 @@ describe('TV Show Game', () => {
       cy.get('p.text_standard__1U0DF').should('have.text', 'You\'ve currently chosen the TV Shows category.You have missed 0 guess(es), \n\t\t\t\t\t\t\t\t\tyou have 6 attempt(s) left.');
     })
 
-    it('Select 1 incorrect letter', () =>{
+    it('Select 1 incorrect letter', () => {
       let charSelection = 'Z'
       cy.keyboardClick(charSelection);
       cy.get('p.text_standard__1U0DF').should('have.text', 'You\'ve currently chosen the TV Shows category.You have missed 1 guess(es), \n\t\t\t\t\t\t\t\t\tyou have 5 attempt(s) left.');
     })
 
-    it('Select 1 incorrect letter 1 correct letter', () =>{
+    it('Select 1 incorrect letter 1 correct letter', () => {
       cy.keyboardClick('Z');
       cy.keyboardClick('D');
       cy.get('p.text_standard__1U0DF').should('have.text', 'You\'ve currently chosen the TV Shows category.You have missed 1 guess(es), \n\t\t\t\t\t\t\t\t\tyou have 5 attempt(s) left.');
     })
 
-    it('Select 6 incorrect letters 1 correct letter', () =>{
+    it('Select 6 incorrect letters 1 correct letter', () => {
       cy.keyboardClick('Z');
       cy.keyboardClick('O');
       cy.keyboardClick('U');
@@ -80,7 +87,7 @@ describe('TV Show Game', () => {
 
   })
 
-  context('Alpha Selection', () =>{
+  context('Alpha Selection', () => {
     it('Clicking keyboard disables key when correct letter', () => {
       let charSelection = 'F'
       cy.keyboardClick(charSelection);

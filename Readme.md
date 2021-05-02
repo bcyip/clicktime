@@ -23,7 +23,7 @@
   ```
 
 ### Run Tests
-  1.  cd into test directory and run
+  1.  cd into `clicktime` test directory and run
     ```
     npx cypress open
     ```
