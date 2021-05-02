@@ -6,7 +6,7 @@ describe('TV Show Game', () => {
     cy.get('.text_button-primary__1bhgI').contains('Load Game').click();
   })
 
-  it('should TV Show game game with the proper name', () => {
+  it('should load game with the proper username', () => {
     cy.get('p.text_header__1XvnO').should('have.text', 'Welcome to WordGame user1!');
     cy.get('p.text_standard__1U0DF').should('have.text', 'You\'ve currently chosen the TV Shows category.You have missed 0 guess(es), \n\t\t\t\t\t\t\t\t\tyou have 6 attempt(s) left.');
   })
@@ -22,7 +22,7 @@ describe('TV Show Game', () => {
     cy.get('p.text_header__1XvnO').should('have.text', 'Welcome to WordGame user1!Congratulations you just won');
   })
 
-  xit('Lose game', () => {
+  xit('Lose game Result', () => {
     cy.keyboardClick('Z');
     cy.keyboardClick('Y');
     cy.keyboardClick('X');
@@ -30,9 +30,12 @@ describe('TV Show Game', () => {
     cy.keyboardClick('V');
     cy.keyboardClick('U');
     cy.keyboardClick('S');
-    // TODO:
     // verify all letters disabled
+    // TODO:
     // verify correct answer displayed
+    cy.get('.wordgame_word__2FQuy').should('have.text', 'FRIENDS');
+    // verify no more attempts left
+    cy.get('p.text_standard__1U0DF').should('have.text', 'You\'ve currently chosen the TV Shows category.You have missed 6 guess(es), \n\t\t\t\t\t\t\t\t\tyou have 0 attempt(s) left.');
   })
 
   it('Restarts game', () => {
